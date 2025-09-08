@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Baby VOX Fansite</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #ffe6f0;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      background-color: #ff80bf;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .navbar img {
+      height: 40px; /* fixed logo size */
+      margin-right: 15px;
+    }
+
+    .navbar button {
+      margin: 5px;
+      padding: 8px 12px;
+      border: none;
+      background: white;
+      color: #ff3399;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    /* Page layout */
+    .page {
+      display: none;
+      padding: 20px;
+    }
+
+    /* Home tabs */
+    .home-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 200px;
+      margin: 20px auto 0;
+    }
+
+    .home-tab {
+      background-color: #ffd6e8;
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    /* Banner images */
+    .top-banner img, .bottom-banger img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+
+    /* Gallery grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      gap: 10px;
+      justify-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .gallery img {
+      width: 60px;
+      height: 60px;
+    }
+
+    /* Members */
+    .members {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .member img {
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    /* Fact files */
+    .fact-file img {
+      width: 150px;
+      height: 150px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+  <img src="Baby_V.O.X_logo.webp" alt="Baby VOX Logo">
+  <button onclick="showPage('home')">Home</button>
+  <button onclick="showPage('members')">Members</button>
+  <button onclick="showPage('gallery')">Gallery</button>
+  <button onclick="showPage('history')">History</button>
+  <button onclick="showPage('socials')">Socials</button>
+  <button onclick="showRandomFact()">Random Fact</button>
+</div>
+
+<!-- Top Banner -->
+<div class="top-banner">
+  <img src="VOX.gif" alt="Baby VOX Banner">
+</div>
+
+<!-- Home Page -->
+<div id="home" class="page">
+  <h1>Welcome to the Baby VOX Fansite!</h1>
+  <img src="Babyvox.jpg" alt="Baby VOX" width="300">
+  <div class="home-tabs">
+    <div class="home-tab"><strong>News:</strong> Latest updates on Baby VOX.</div>
+    <div class="home-tab"><strong>About Me:</strong> Hello! My name is Lewis and I’ve been a fan since 2022...</div>
+    <div class="home-tab">
+      <strong>Random Fact:</strong>
+      <button onclick="showRandomFact()">Click for a fact!</button>
+    </div>
+    <div class="home-tab"><strong>Special Thanks:</strong> <a href="https://babyvoxi.com" target="_blank">BabyVoxi</a></div>
+    <div class="home-tab"><strong>Visitor Counter:</strong> <span id="visitor-count">0</span></div>
+  </div>
+</div>
+
+<script>
+  // Page switching
+  function showPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.style.display = 'none');
+    document.getElementById(pageId).style.display = 'block';
+  }
+
+  // Random Fact Generator
+  const randomFacts = [
+    "Baby VOX inspired modern K-pop girl groups.",
+    "Debuted in 1997 under DR Music.",
+    "Kim EZ was the leader and main rapper.",
+    "Yoon Eun Hye became a famous actress after Baby VOX.",
+    "They had hits like 'Xcstasy', 'Devotion', and 'Boyish Story'."
+  ];
+
+  function showRandomFact() {
+    const fact = randomFacts[Math.floor(Math.random() * randomFacts.length)];
+    alert(fact);
+  }
+
+  // Visitor counter
+  if (!localStorage.getItem("visitorCount")) {
+    localStorage.setItem("visitorCount", 1);
+  } else {
+    let count = parseInt(localStorage.getItem("visitorCount")) + 1;
+    localStorage.setItem("visitorCount", count);
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("visitor-count").textContent = localStorage.getItem("visitorCount");
+    showPage('home');
+  });
+</script>
+
+<!-- Members Page -->
+<div id="members" class="page">
+  <h1>Members</h1>
+  <div class="members">
+    <div class="member" onclick="showFact('kim_ez')">
+      <img src="Kim_ez.jpg" alt="Kim EZ" width="80" height="80">
+      <p>Kim EZ</p>
+    </div>
+    <div class="member" onclick="showFact('yoon_eunhye')">
+      <img src="yoon_eunhye.webp" alt="Yoon Eun Hye" width="80" height="80">
+      <p>Yoon Eun Hye</p>
+    </div>
+    <div class="member" onclick="showFact('kan_miyoun')">
+      <img src="kan_miyoun.webp" alt="Kan Mi Youn" width="80" height="80">
+      <p>Kan Mi Youn</p>
+    </div>
+    <div class="member" onclick="showFact('shim_eunjin')">
+      <img src="shim_eunjin.jpg" alt="Shim Eun Jin" width="80" height="80">
+      <p>Shim Eun Jin</p>
+    </div>
+    <div class="member" onclick="showFact('lee_heejin')">
+      <img src="Lee_Heejin.webp" alt="Lee Hee Jin" width="80" height="80">
+      <p>Lee Hee Jin</p>
+    </div>
+    <div class="member" onclick="showFact('lee_gai')">
+      <img src="Lee_Gai.jpeg" alt="Lee Gai" width="80" height="80">
+      <p>Lee Gai</p>
+    </div>
+  </div>
+
+  <!-- Fact Files -->
+  <div id="kim_ez" class="fact-file" style="display:none;">
+    <img src="Kim_ez.jpg" alt="Kim EZ" width="150" height="150">
+    <h2>Kim EZ (Kim Hee-Jung)</h2>
+    <p>Born: January 31, 1979</p>
+    <p>Main Rapper, Leader</p>
+    <p>Fun Fact: She was in Baby VOX for the group's entire tenure from 1997-2006.</p>
+  </div>
+
+  <div id="yoon_eunhye" class="fact-file" style="display:none;">
+    <img src="yoon_eunhye.webp" alt="Yoon Eun Hye" width="150" height="150">
+    <h2>Yoon Eun Hye</h2>
+    <p>Born: October 3, 1984</p>
+    <p>Sub Vocalist, Maknae</p>
+    <p>Fun Fact: Starred in Coffee Prince (2007) and Princess Hours (2006).</p>
+  </div>
+
+  <div id="kan_miyoun" class="fact-file" style="display:none;">
+    <img src="kan_miyoun.webp" alt="Kan Mi Youn" width="150" height="150">
+    <h2>Kan Mi Youn</h2>
+    <p>Born: February 2, 1983</p>
+    <p>Main Vocalist</p>
+    <p>Fun Fact: Released three solo albums; first hit single was "Paparazzi".</p>
+  </div>
+
+  <div id="shim_eunjin" class="fact-file" style="display:none;">
+    <img src="shim_eunjin.jpg" alt="Shim Eun Jin" width="150" height="150">
+    <h2>Shim Eun Jin</h2>
+    <p>Born: February 6, 1981</p>
+    <p>Lead Dancer, Vocalist</p>
+    <p>Fun Fact: Now a painter/artist, also performed solo under stage name Zeeny.</p>
+  </div>
+
+  <div id="lee_heejin" class="fact-file" style="display:none;">
+    <img src="Lee_Heejin.webp" alt="Lee Hee Jin" width="150" height="150">
+    <h2>Lee Hee Jin</h2>
+    <p>Born: May 16, 1979</p>
+    <p>Visual, Sub Vocalist</p>
+    <p>Fun Fact: Acted in K-dramas and runs her own coffee shop.</p>
+  </div>
+
+  <div id="lee_gai" class="fact-file" style="display:none;">
+    <img src="Lee_Gai.jpeg" alt="Lee Gai" width="150" height="150">
+    <h2>Lee Gai</h2>
+    <p>Born: July 19, 1968</p>
+    <p>Vocalist</p>
+    <p>Fun Fact: Known as Lee Jisoo before joining Baby VOX (1998–1999).</p>
+  </div>
+</div>
+
+<script>
+  // Function to show fact file when member is clicked
+  function showFact(memberId) {
+    const facts = document.querySelectorAll('.fact-file');
+    facts.forEach(f => f.style.display = 'none'); // Hide all
+    document.getElementById(memberId).style.display = 'block'; // Show clicked
+  }
+</script>
+<!-- Gallery Page -->
+<div id="gallery" class="page">
+  <h1>Gallery</h1>
+  <div class="gallery" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(60px, 1fr)); gap:10px; justify-items:center;">
+    <a href="baby_vox.jpg" target="_blank"><img src="baby_vox.jpg" alt="Baby Vox" width="60" height="60"></a>
+    <a href="baby_vox copy.jpg" target="_blank"><img src="baby_vox copy.jpg" alt="Baby Vox Copy" width="60" height="60"></a>
+    <a href="babyvox.jpg" target="_blank"><img src="babyvox.jpg" alt="Baby Vox Home" width="60" height="60"></a>
+    <a href="Leeheejin.jpg" target="_blank"><img src="Leeheejin.jpg" alt="Lee Heejin" width="60" height="60"></a>
+    <a href="images.jpeg" target="_blank"><img src="images.jpeg" alt="Images" width="60" height="60"></a>
+    <a href="BABYVOX2.jpg" target="_blank"><img src="BABYVOX2.jpg" alt="Baby Vox 2" width="60" height="60"></a>
+    <a href="EUNHYE.jpg" target="_blank"><img src="EUNHYE.jpg" alt="Yoon Eun Hye 1" width="60" height="60"></a>
+    <a href="EUNHYE2.jpg" target="_blank"><img src="EUNHYE2.jpg" alt="Yoon Eun Hye 2" width="60" height="60"></a>
+    <a href="EUNHYE3.jpg" target="_blank"><img src="EUNHYE3.jpg" alt="Yoon Eun Hye 3" width="60" height="60"></a>
+    <a href="HEEJIN2.jpg" target="_blank"><img src="HEEJIN2.jpg" alt="Lee Heejin 2" width="60" height="60"></a>
+    <a href="HEEJIN3.jpg" target="_blank"><img src="HEEJIN3.jpg" alt="Lee Heejin 3" width="60" height="60"></a>
+    <a href="HEEJIN4.jpg" target="_blank"><img src="HEEJIN4.jpg" alt="Lee Heejin 4" width="60" height="60"></a>
+    <a href="EUNJIN.jpg" target="_blank"><img src="EUNJIN.jpg" alt="Shim Eun Jin" width="60" height="60"></a>
+    <a href="BABYVOX4.jpg" target="_blank"><img src="BABYVOX4.jpg" alt="Baby Vox 4" width="60" height="60"></a>
+    <a href="BABYVOX5.jpg" target="_blank"><img src="BABYVOX5.jpg" alt="Baby Vox 5" width="60" height="60"></a>
+    <a href="EZ2.jpg" target="_blank"><img src="EZ2.jpg" alt="Kim EZ 2" width="60" height="60"></a>
+    <a href="MIYOUN2.webp" target="_blank"><img src="MIYOUN2.webp" alt="Kan Mi Youn 2" width="60" height="60"></a>
+    <a href="MIYOUN3.webp" target="_blank"><img src="MIYOUN3.webp" alt="Kan Mi Youn 3" width="60" height="60"></a>
+
+    <!-- New images added -->
+    <a href="BABYVOX6.jpg" target="_blank"><img src="BABYVOX6.jpg" alt="Baby Vox 6" width="60" height="60"></a>
+    <a href="BABYVOX7.jpeg" target="_blank"><img src="BABYVOX7.jpeg" alt="Baby Vox 7" width="60" height="60"></a>
+    <a href="BABYVOX8.jpeg" target="_blank"><img src="BABYVOX8.jpeg" alt="Baby Vox 8" width="60" height="60"></a>
+    <a href="EZ3.jpg" target="_blank"><img src="EZ3.jpg" alt="Kim EZ 3" width="60" height="60"></a>
+    <a href="EZ4.jpg" target="_blank"><img src="EZ4.jpg" alt="Kim EZ 4" width="60" height="60"></a>
+  </div>
+</div>
+
+<!-- History Page -->
+<div id="history" class="page">
+  <h1>History of Baby V.O.X</h1>
+  <div class="history-logo" style="text-align:center; margin-bottom:20px;">
+    <img src="Baby_V.O.X_logo.webp" alt="Baby VOX Logo" width="200" height="200">
+  </div>
+
+  <div class="history-timeline" style="max-width:600px; margin:0 auto; text-align:left;">
+    <ul>
+      <li><strong>1997 – Original Lineup:</strong> Kim E-Z (Leader/Rapper), Lee Hee-jin (Lead Vocalist), Cha Yumi (Main Vocalist), Jung Shi-woon (Rapper), Jeong Hyeon-jeong (Sub-Vocalist). Debut album: <em>Equalizeher</em>, single "Hair Cut".</li>
+
+      <li><strong>1998 – Baby V.O.X II:</strong> Cha Yumi leaves due to injury; replaced by Kan Mi-youn. Jung Shi-woon and Jeong Hyeon-jeong replaced by Shim Eun-jin and Lee Gai. Album <em>Baby V.O.X II</em> released with hit "Ya Ya Ya".</li>
+
+      <li><strong>1999 – Come Come Come Baby:</strong> Lee Gai leaves; Yoon Eun-hye joins. Album <em>Come Come Come Baby</em> released, featuring hit "Missing You".</li>
+
+      <li><strong>2001:</strong> Album <em>Boyish Story</em> released, including singles "Game Over" and "Doll".</li>
+
+      <li><strong>2003:</strong> Album <em>Devotion</em> released, featuring hit "What Should I Do".</li>
+
+      <li><strong>2004 – Ride West:</strong> Final album <em>Ride West</em> released, including the song "Xcstasy". Shim Eun-jin leaves the group.</li>
+
+      <li><strong>2005:</strong> Yoon Eun-hye and Kim E-Z leave the group.</li>
+
+      <li><strong>February 5, 2006:</strong> Baby V.O.X officially disbands.</li>
+
+      <li><strong>December 12, 2024:</strong> Reunion performance on KBS’s End of the Year Broadcast.</li>
+
+      <li><strong>September 26–27, 2025:</strong> Solo concert scheduled at Peace Hall, Kyung Hee University, Seoul.</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- Socials / Links Page -->
+<div id="socials" class="page">
+  <h1>My Fanpage / Socials</h1>
+  <div class="socials" style="display:flex; flex-direction:column; gap:10px; align-items:center; margin-bottom:40px;">
+    <!-- Your fanpage -->
+    <a href="https://instagram.com/lewislovesbabyvox" target="_blank">@lewislovesbabyvox on Instagram</a>
+    <a href="https://www.tiktok.com/@lewislovesbabyvox" target="_blank">@lewislovesbabyvox on TikTok</a>
+
+    <!-- Baby VOX Members Instagram -->
+    <a href="https://www.instagram.com/miyoun_kan" target="_blank">Kan Mi Youn on Instagram</a>
+    <a href="https://www.instagram.com/eundung81" target="_blank">Shim Eun Jin on Instagram</a>
+    <a href="https://www.instagram.com/_lee_heejin" target="_blank">Lee Hee Jin on Instagram</a>
+    <a href="https://www.instagram.com/ezez0417" target="_blank">Kim EZ on Instagram</a>
+    <a href="https://www.instagram.com/y1003_grace" target="_blank">Yoon Eun Hye on Instagram</a>
+
+    <!-- Baby VOX Resources -->
+    <a href="https://en.wikipedia.org/wiki/Baby_VOX" target="_blank">Baby VOX Wikipedia</a>
+    <a href="https://www.youtube.com/c/babyvoxarchive" target="_blank">Baby VOX YouTube Archive</a>
+    <a href="https://www.allkpop.com/artist/baby-vox" target="_blank">Allkpop - Baby VOX</a>
+  </div>
+</div>
+
+<!-- Bottom GIF (at the very bottom of the page) -->
+<div class="bottom-banger" style="text-align:center; margin-top:20px;">
+  <img src="VOX2.gif" alt="VOX Bottom Banger GIF" style="width:200px; height:auto; border-radius:8px;">
+</div>
+
+<!-- End of site -->
+</body>
+</html>
